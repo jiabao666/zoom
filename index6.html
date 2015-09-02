@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<canvas width="180" height="180" style="background: #ccc" id="canvas"></canvas>
+</body>
+<script>
+    var canvas=document.getElementById("canvas");
+    var ctx=canvas.getContext("2d");
+
+    init();
+    function init(){
+      config();
+      setInterval(auto,100);
+    };
+    function config(){
+        ctx.save();
+        ctx.translate(75,75);
+        ctx.scale(0.4,0.4);
+        ctx.rotate(-Math.PI/2);
+        ctx.strokeStyle = "black";
+        ctx.fillStyle = "white";
+        ctx.lineWidth = 8;
+        ctx.lineCap = "round";
+    }
+    var x=0;
+    function auto(){
+        ctx.save();
+        ctx.beginPath();
+        ctx.rotate((Math.PI/5)*x);
+        ctx.clearRect(0,0,150,150);
+        ctx.fillStyle="rgba(0, 0, 0, 0.8)";
+        ctx.arc(130,0,15,0,2*Math.PI,false);
+        ctx.fill();
+        ctx.closePath();
+        ctx.restore();
+        x++;
+    }
+
+
+
+/*    ctx.save();
+    for (var i=0;i<12;i++){
+        ctx.beginPath();
+        ctx.rotate(Math.PI/6);
+        ctx.moveTo(100,0);
+        ctx.lineTo(120,0);
+        ctx.stroke();
+    }
+    ctx.restore();*/
+
+</script>
+</html>
